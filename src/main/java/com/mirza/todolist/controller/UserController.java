@@ -12,18 +12,19 @@ import com.mirza.todolist.dto.UserDto;
 import com.mirza.todolist.service.UserManagementService;
 
 @RestController
+@RequestMapping("/user")
 public class UserController {
 
 	@Autowired
 	private UserManagementService userManagementService;
 
-	@RequestMapping(value = "/user", method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<?> register(@RequestBody UserDto dto) {
 		userManagementService.register(dto);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/user", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<?> getAll() {
 		return new ResponseEntity<>(userManagementService.getAll(), HttpStatus.OK);
 	}
